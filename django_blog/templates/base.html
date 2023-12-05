@@ -1,0 +1,17 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block tetle %} index{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery=True %}
+</head>
+<body>
+{% include 'heder.html' %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
