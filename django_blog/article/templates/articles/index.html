@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}articles{% endblock %}
+{% block content %}
+<div class="container-lg mt-3">
+      <h1>Статьи</h1>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Статьи</th>
+    </tr>
+  </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td><blockquote class="blockquote text-left">
+          <p class="mb-0">{{ article }}</p>
+        </blockquote></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
