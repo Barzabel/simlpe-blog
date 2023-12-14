@@ -1,6 +1,6 @@
 .venv/
 *.sqlite3
 __pycache__/
-.env
+django_blog/.env
 .coverage
 htmlcov/
