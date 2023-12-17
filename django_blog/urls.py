@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django_blog.views import IndexPageView
 from django.views.generic.base import TemplateView
+from django_blog.views import IndexPageView
+
+
+handler404 = 'django_blog.views.page_not_found_view'
 
 urlpatterns = [
     path('', IndexPageView.as_view(), name='index'),
