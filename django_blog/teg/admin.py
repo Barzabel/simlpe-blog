@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Tegs
 
-# Register your models here.
+
+class TegAdmin(admin.ModelAdmin):
+    search_fields = ['name',]
+
+
+admin.site.register(Tegs, TegAdmin)
+
