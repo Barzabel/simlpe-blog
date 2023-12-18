@@ -2,6 +2,8 @@ from django.views.generic.base import TemplateView
 from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Article
+from django_blog.teg.models import Tegs
+
 
 class ArticlesPageView(TemplateView):
 
@@ -21,4 +23,14 @@ class ArticleById(View):
             request,
             "articles/article.html",
             context={'article': article}
+        )
+
+class ArticleByTeg(View):
+    def get(self, request, *args, **kwargs):
+        teg = get_object_or_404(Tegs, name=kwargs['teg'])
+        articles = teg.Article_list.all()
+        return render(
+            request,
+            "articles/article.html",
+            context={'articles': articles}
         )

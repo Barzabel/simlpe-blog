@@ -8,6 +8,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Статьи</th>
+        <th scope="col">Теги</th>
     </tr>
   </thead>
     <tbody>
@@ -15,8 +16,11 @@
         <tr>
           <th scope="row">{{ forloop.counter }}</th>
           <td><blockquote class="blockquote text-left">
-          <p class="mb-0">{{ article }}</p>
+          <p class="mb-0"><a href="{% url 'article_by_id' id=article.id %}">{{ article.name }}</a></p>
         </blockquote></td>
+            <td>
+                {{ article.tegs.all|join:', ' }}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
