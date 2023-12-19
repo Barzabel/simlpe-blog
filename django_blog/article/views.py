@@ -31,6 +31,6 @@ class ArticleByTeg(View):
         articles = teg.Article_list.all()
         return render(
             request,
-            "articles/article.html",
-            context={'articles': articles}
+            "articles/index.html",
+            context={'articles': articles, 'teg': teg}
         )

@@ -3,6 +3,10 @@
 {% block content %}
 <div class="container-lg mt-3">
       <h1>Статьи</h1>
+    {% if teg %}
+    <h4>Тег: {{ teg }}</h4>
+    {% endif %}
+
   <table class="table table-striped">
   <thead>
     <tr>
@@ -19,7 +23,9 @@
           <p class="mb-0"><a href="{% url 'article_by_id' id=article.id %}">{{ article.name }}</a></p>
         </blockquote></td>
             <td>
-                {{ article.tegs.all|join:', ' }}
+                {% for teg in article.tegs.all %}
+                <a href="{% url 'article_by_teg' teg=teg %}" >{{ teg }}</a>
+                {% endfor %}
             </td>
         </tr>
         {% endfor %}
