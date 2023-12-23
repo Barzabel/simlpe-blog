@@ -3,9 +3,6 @@
 {% block content %}
 <div class="container-lg mt-3">
       <h1>Статьи</h1>
-    {% if teg %}
-    <h4>Тег: {{ teg }}</h4>
-    {% endif %}
         <form class="form-inline mb-3" action="{% url 'article' %}" method="get">
           <div class="form-group">
             <input class="form-control" type="search" name="query" value="{{ query }}" placeholder="Название статьи">
@@ -46,7 +43,7 @@
         </blockquote></td>
             <td>
                 {% for teg in article.tegs.all %}
-                <a href="{% url 'article_by_teg' teg=teg %}" >{{ teg }}</a>
+                <a href="{% url 'article' %}?tegs={{teg.id}}" >{{ teg }}</a>
                 {% endfor %}
             </td>
         </tr>

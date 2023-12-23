@@ -34,18 +34,3 @@ class ArticleById(View):
             "articles/article.html",
             context={'article': article}
         )
-
-class ArticleByTeg(View):
-    def get(self, request, *args, **kwargs):
-        teg = get_object_or_404(Tegs, name=kwargs['teg'])
-        query = request.GET.get('query', '')
-        articles = teg.Article_list.filter(Q(name__icontains=query))
-        return render(
-            request,
-            "articles/index.html",
-            context={
-                'articles': articles,
-                'teg': teg,
-                'query': query,
-            }
-        )
