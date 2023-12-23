@@ -13,11 +13,16 @@
 
           <button class="btn btn-info" type="submit">Поиск</button>
 
-
-        <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary" for="btn-check">
-                <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">Single toggle
-            </label>
+        <div class="container">
+            <div class="row">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    {% for teg in tegs %}
+                    <label class="btn btn-outline-info" for="{{teg}}">
+                        <input name="tegs" type="checkbox" class="btn-check" id="{{teg}}" autocomplete="off" value="{{teg.id}}">{{teg.name}}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
         </form>
 
@@ -49,4 +54,5 @@
     </tbody>
   </table>
 </div>
+{{ aaa }}
 {% endblock %}

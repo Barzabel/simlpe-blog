@@ -8,13 +8,19 @@ from django_blog.teg.models import Tegs
 class ArticlesPageView(View):
     def get(self, request, *args, **kwargs):
         query = request.GET.get('query', '')
-        articles = Article.objects.filter(Q(name__icontains=query))
+        select_tegs = request.GET.getlist('tegs', None)
+        tegs = Tegs.objects.all()
+        if select_tegs:
+            articles = Article.objects.filter(Q(name__icontains=query), tegs__in=select_tegs).distinct()
+        else:
+            articles = Article.objects.filter(Q(name__icontains=query))
         return render(
             request,
             "articles/index.html",
             context={
                 'articles': articles,
                 'query': query,
+                'tegs': tegs,
             }
         )
 
