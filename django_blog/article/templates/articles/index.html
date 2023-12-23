@@ -6,6 +6,23 @@
     {% if teg %}
     <h4>Тег: {{ teg }}</h4>
     {% endif %}
+        <form class="form-inline mb-3" action="{% url 'article' %}" method="get">
+          <div class="form-group">
+            <input class="form-control" type="search" name="query" value="{{ query }}" placeholder="Название статьи">
+          </div>
+
+          <button class="btn btn-info" type="submit">Поиск</button>
+
+
+        <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary" for="btn-check">
+                <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">Single toggle
+            </label>
+        </div>
+        </form>
+
+
+
 
   <table class="table table-striped">
   <thead>

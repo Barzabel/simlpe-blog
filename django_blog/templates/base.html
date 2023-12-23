@@ -9,9 +9,15 @@
     {% bootstrap_css %}
     {% bootstrap_javascript jquery=True %}
 </head>
-<body>
-{% include 'heder.html' %}
-{% block content %}
-{% endblock %}
+<body class="bg-light">
+    <div >
+        <header>
+            {% include 'heder.html' %}
+        </header>
+    </div>
+    <div >
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>
