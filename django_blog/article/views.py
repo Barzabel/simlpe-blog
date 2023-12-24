@@ -3,6 +3,10 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from .models import Article
 from django_blog.teg.models import Tegs
+from django.db.models import Count
+
+
+
 
 
 class ArticlesPageView(View):
@@ -11,7 +15,10 @@ class ArticlesPageView(View):
         select_tegs = request.GET.getlist('tegs', None)
         tegs = Tegs.objects.all()
         if select_tegs:
-            articles = Article.objects.filter(Q(name__icontains=query), tegs__in=select_tegs).distinct()
+            articles = Article.objects.filter(
+                Q(name__icontains=query),
+                tegs__in=select_tegs
+            ).annotate(num_tegs=Count('tegs')).filter(num_tegs=len(select_tegs))
         else:
             articles = Article.objects.filter(Q(name__icontains=query))
         return render(
