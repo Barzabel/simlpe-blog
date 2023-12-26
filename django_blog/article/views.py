@@ -1,7 +1,8 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .models import Article
+from .forms import ArticleForm
 from django_blog.teg.models import Tegs
 from django.db.models import Count
 
@@ -31,6 +32,30 @@ class ArticlesPageView(View):
             }
         )
 
+
+class ArticleFormCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = ArticleForm()
+        return render(
+            request,
+            "articles/form.html",
+            context={
+                'form': form,
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('article')
+        return render(
+            request,
+            "articles/form.html",
+            context={
+                'form': form,
+            }
+        )
 
 class ArticleById(View):
     def get(self, request, *args, **kwargs):
