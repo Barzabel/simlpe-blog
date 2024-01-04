@@ -7,4 +7,5 @@
         {{ article.body }}
     </p>
 </div>
+<a href="{% url 'article_edit' id=article.id %}" >Редактировать</a>
 {% endblock %}

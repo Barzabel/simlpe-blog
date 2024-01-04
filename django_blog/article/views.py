@@ -57,6 +57,38 @@ class ArticleFormCreateView(View):
             }
         )
 
+
+class ArticleFormEditView(View):
+    def get(self, request, *args, **kwargs):
+        id = kwargs['id']
+        article = get_object_or_404(Article, pk=id)
+        form = ArticleForm(instance=article)
+        return render(
+            request,
+            "articles/form_edit.html",
+            context={
+                'form': form,
+                'article_id': id,
+            }
+        )
+
+    def post(self, request, *args, **kwargs):
+        id = kwargs['id']
+        article = get_object_or_404(Article, pk=id)
+        form = ArticleForm(request.POST,  instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('article')
+        return render(
+            request,
+            "articles/form_edit.html",
+            context={
+                'form': form,
+                'article_id': id,
+            }
+        )
+
+
 class ArticleById(View):
     def get(self, request, *args, **kwargs):
         id = kwargs['id']
